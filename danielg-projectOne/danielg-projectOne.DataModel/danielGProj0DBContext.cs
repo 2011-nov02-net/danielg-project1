@@ -15,6 +15,7 @@ namespace danielg_projectOne.DataModel
         public danielGProj0DBContext(DbContextOptions<danielGProj0DBContext> options)
             : base(options)
         {
+
         }
 
         public virtual DbSet<AggInventory> AggInventories { get; set; }

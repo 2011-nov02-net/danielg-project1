@@ -348,3 +348,9 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+
+
+# Git ignore files that I want to add
+danielg-projectOne/danielg-projectOne/appsettings.json
+
+

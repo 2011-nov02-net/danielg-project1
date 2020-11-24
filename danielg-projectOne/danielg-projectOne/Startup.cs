@@ -23,6 +23,8 @@ namespace danielg_projectOne
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // This method is for (1) configuring middleware before actually plugging it in
+            //   and (2) adding "services" to the DI container
             services.AddControllersWithViews();
         }
 

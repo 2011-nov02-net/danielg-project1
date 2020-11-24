@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "danielg-projectOne.UnitTest
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "danielg-projectOne.DataModel", "danielg-projectOne.DataModel\danielg-projectOne.DataModel.csproj", "{2ACEF1BF-CAD8-4B96-99EF-F72A1BBAF516}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "danielg-projectOne.Library", "danielg-projectOne.Library\danielg-projectOne.Library.csproj", "{B53D04A7-D88F-4E16-A85C-5BC5742671CD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "danielg-projectOne.Domain", "danielg-projectOne.Library\danielg-projectOne.Domain.csproj", "{B53D04A7-D88F-4E16-A85C-5BC5742671CD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
