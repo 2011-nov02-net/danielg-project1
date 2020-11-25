@@ -7,7 +7,7 @@ using danielg_projectOne.Library.Order;
 
 namespace danielg_projectOne.DataModel.Repositories
 {
-    public class CustomerRepository
+    public class CustomerRepository: ICustomerRepository
     {
         /// <summary>
         /// Create field for context options that will be set using the context options from
@@ -24,7 +24,7 @@ namespace danielg_projectOne.DataModel.Repositories
         }
 
         /// <summary>
-        /// Method returns list of console customers from the database model
+        /// Method returns list of Web App customers from the database model
         /// </summary>
         /// <returns></returns>
         public List<CustomerClass> GetAllCustomers()
@@ -33,7 +33,7 @@ namespace danielg_projectOne.DataModel.Repositories
             using var context = new danielGProj0DBContext(_contextOptions);
             // Get DB Object list of customers
             var dbCustomers = context.Customers.ToList();
-            // Make DB list into Console Customers list
+            // Make DB list into Web App Customers list
             var appCustomers = dbCustomers.Select(c => new CustomerClass(c.Name, c.Id)).ToList();
             // return customer list
             return appCustomers;
@@ -47,7 +47,7 @@ namespace danielg_projectOne.DataModel.Repositories
         {
             // Create Context
             using var context = new danielGProj0DBContext(_contextOptions);
-            // Create a database customer using info from ConsoleApp Customer
+            // Create a database customer using info from Web App Customer
             Customer dbCustomer = new Customer
             {
                 Name = customer.Name
@@ -59,7 +59,7 @@ namespace danielg_projectOne.DataModel.Repositories
         }
 
         /// <summary>
-        /// Send a console app to the database
+        /// Send a Web App order to the database
         /// </summary>
         /// <param name="order"></param>
         public void SendGenOrderToDB(IOrder order)
@@ -172,7 +172,7 @@ namespace danielg_projectOne.DataModel.Repositories
         }
 
         /// <summary>
-        /// Return a Console customer based on an int passed in from the customer
+        /// Return a Web App customer based on an int passed in from the customer
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -182,14 +182,14 @@ namespace danielg_projectOne.DataModel.Repositories
             using var context = new danielGProj0DBContext(_contextOptions);
             // Find the database entry for the specific Customer
             var customer = context.Customers.Find(id);
-            // Create the Console Customer from the database customer
+            // Create the Web App Customer from the database customer
             CustomerClass appCustomer = new CustomerClass(customer.Name, customer.Id);
 
             return appCustomer;
         }
 
         /// <summary>
-        /// Create a console customer complete with their order history
+        /// Create a Web App customer complete with their order history
         /// </summary>
         /// <param name="custID"></param>
         /// <returns></returns>
@@ -204,9 +204,9 @@ namespace danielg_projectOne.DataModel.Repositories
             // for each order to a store, get the details of it.
             foreach (var order in generalOrders)
             {
-                // Get the Console Customer from the DB
+                // Get the Web App Customer from the DB
                 var tempCust = GetCustomerFromID(order.CustomerId);
-                // Get the Console Location from the DB
+                // Get the Web App Location from the DB
                 var tempLocation = GetStoreFromID(order.StoreId);
                 // Add Location and Customer to the order
                 Order tempOrder = new Order(tempLocation, tempCust, order.Id, order.Date);
@@ -247,17 +247,20 @@ namespace danielg_projectOne.DataModel.Repositories
             return appLocation;
         }
 
-
+        /// <summary>
+        /// Create the inventory of a store, based on the storeID
+        /// </summary>
+        /// <param name="storeID"></param>
+        /// <returns></returns>
         public Dictionary<string, int> CreateStoreInventory(int storeID)
         {
             // Create empty dictionary to fill in inventory
             Dictionary<string, int> inventory = new Dictionary<string, int>();
-            //SortedList<>
             // Create Context
             using var context = new danielGProj0DBContext(_contextOptions);
             // Get agg inventory items from the database- this is a stores inventory
             var itemsInInventory = context.AggInventories.Where(i => i.StoreId == storeID).ToList();
-            // create console inventory with db inventory pieces
+            // create Web App inventory with db inventory pieces
 
             Dictionary<string, int> inv = itemsInInventory.ToDictionary(i => i.Product, i => i.InStock);
 
@@ -265,7 +268,7 @@ namespace danielg_projectOne.DataModel.Repositories
         }
 
         /// <summary>
-        /// Get all of the products from the database and create the console app products
+        /// Get all of the products from the database and create the Web App products
         /// </summary>
         /// <returns></returns>
         public List<danielg_projectOne.Library.Product> GetProducts()
@@ -305,14 +308,14 @@ namespace danielg_projectOne.DataModel.Repositories
             using var context = new danielGProj0DBContext(_contextOptions);
             // Create DB object list of stores
             var dbStores = context.Stores.ToList();
-            // Make DB list into Console Stores List
+            // Make DB list into Web App Stores List
             var appStores = dbStores.Select(s => new Location(s.Location, s.Id)).ToList();
 
             return appStores;
         }
 
         /// <summary>
-        /// Create console app store, from the database. Complete with inventory.
+        /// Create Web App store, from the database. Complete with inventory.
         /// </summary>
         /// <param name="storeID"></param>
         /// <returns></returns>
@@ -324,7 +327,7 @@ namespace danielg_projectOne.DataModel.Repositories
             using var context = new danielGProj0DBContext(_contextOptions);
             // Get agg inventory items from the database- this is a stores inventory
             var itemsInInventory = context.AggInventories.Where(i => i.StoreId == storeID).ToList();
-            // create console inventory with db inventory pieces
+            // create Web App inventory with db inventory pieces
             Dictionary<string, int> inv = itemsInInventory.ToDictionary(i => i.Product, i => i.InStock);
             // Create store From Store DBtable
             var dbStore = context.Stores.Where(s => s.Id == storeID);

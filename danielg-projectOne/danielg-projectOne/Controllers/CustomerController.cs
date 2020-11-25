@@ -9,6 +9,10 @@ namespace danielg_projectOne.Controllers
 {
     public class CustomerController : Controller
     {
+
+
+
+
         // GET: /<controller>/
         public IActionResult Index()
         {
