@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using danielg_projectOne.Library.Customer;
 using System.Linq;
 using danielg_projectOne.Library;
-using danielg_projectOne;
 using danielg_projectOne.Library.Order;
 
 namespace danielg_projectOne.DataModel.Repositories
@@ -270,7 +268,7 @@ namespace danielg_projectOne.DataModel.Repositories
         /// Get all of the products from the database and create the console app products
         /// </summary>
         /// <returns></returns>
-        public List<StoreProject.Library.Product> GetProducts()
+        public List<danielg_projectOne.Library.Product> GetProducts()
         {
             // Create context
             using var context = new danielGProj0DBContext(_contextOptions);
@@ -278,7 +276,7 @@ namespace danielg_projectOne.DataModel.Repositories
             //  that are the key in the dictionary
             var dbProducts = context.Products.ToList();
             // Make the list of products into an a list of app products
-            var appProducts = dbProducts.Select(p => new StoreProject.Library.Product(p.Name, p.Price)).ToList();
+            var appProducts = dbProducts.Select(p => new danielg_projectOne.Library.Product(p.Name, p.Price)).ToList();
 
             return appProducts;
         }
