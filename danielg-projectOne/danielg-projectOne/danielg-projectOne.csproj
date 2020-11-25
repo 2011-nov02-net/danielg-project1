@@ -17,4 +17,8 @@
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Manager\" />
+    <Folder Include="Views\Customer\" />
+  </ItemGroup>
 </Project>

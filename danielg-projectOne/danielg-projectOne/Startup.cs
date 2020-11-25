@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using danielg_projectOne.DataModel;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -25,6 +27,11 @@ namespace danielg_projectOne
         {
             // This method is for (1) configuring middleware before actually plugging it in
             //   and (2) adding "services" to the DI container
+
+            services.AddDbContext<danielGProj0DBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("McDB")));
+
+
+
             services.AddControllersWithViews();
         }
 
