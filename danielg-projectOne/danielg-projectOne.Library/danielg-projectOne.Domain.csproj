@@ -5,4 +5,7 @@
     <RootNamespace>danielg_projectOne.Library</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Order\" />
+  </ItemGroup>
 </Project>
