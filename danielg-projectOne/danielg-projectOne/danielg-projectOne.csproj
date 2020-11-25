@@ -16,6 +16,9 @@
     <ProjectReference Include="..\danielg-projectOne.DataModel\danielg-projectOne.DataModel.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
+    <ProjectReference Include="..\danielg-projectOne.Library\danielg-projectOne.Library.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Manager\" />

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using danielg_projectOne.DataModel;
+using danielg_projectOne.DataModel.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,7 +31,8 @@ namespace danielg_projectOne
 
             services.AddDbContext<danielGProj0DBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("McDB")));
 
-
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<IManagerRepository, ManagerRepository>();
 
             services.AddControllersWithViews();
         }
