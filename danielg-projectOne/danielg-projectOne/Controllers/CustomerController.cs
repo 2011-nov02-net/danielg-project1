@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using danielg_projectOne.DataModel.Repositories;
 using danielg_projectOne.Library;
+using danielg_projectOne.Models;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -22,8 +23,14 @@ namespace danielg_projectOne.Controllers
         public IActionResult Index()
         {
             List<CustomerClass> custs = Repo.GetAllCustomers();
-            Console.WriteLine("Button Clicked");
-            return View();
+            IEnumerable<CustomerViewModel> vmCusts = custs.Select(c => new CustomerViewModel
+            {
+                ID = c.Id,
+                FullName = c.Name
+            });
+
+
+            return View(vmCusts);
         }
     }
 }

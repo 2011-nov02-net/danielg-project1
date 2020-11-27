@@ -1,6 +1,38 @@
 ﻿@*
     
 *@
+
+@model IEnumerable<CustomerViewModel>
+
 @{
     ViewData["Title"] = "Customers";
 }
+
+<table>
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var cust in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => cust.ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => cust.FullName)
+                </td>
+                <td>
+                    @Html.ActionLink("Sign in", "SignIn", "Customer", cust.ID)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
