@@ -8,7 +8,21 @@
     ViewData["Title"] = "Customers";
 }
 
-<table>
+<h1>Customers</h1>
+<div>
+    <h4>Sign in, or Create a new Account</h4>
+</div>
+
+<div>
+    <form asp-action="Index" method="GET" class="form-inline">
+        <label class="sr-only" for="search">Search for yourself here:</label>
+        <input type="search" class="form-control mb-2 mr-sm-2 mb-sm-0" id="search" name="search" placeholder="Search" />
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+
+<table class="table">
     <thead>
         <tr>
             <th>

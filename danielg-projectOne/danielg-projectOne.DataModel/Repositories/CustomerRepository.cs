@@ -39,6 +39,24 @@ namespace danielg_projectOne.DataModel.Repositories
             return appCustomers;
         }
 
+
+        /// <summary>
+        /// Method returns a list of all the cutomers with matching name
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public List<CustomerClass> GetAllCustomersByName(string name="")
+        {
+            // Create Context
+            using var context = new danielGProj0DBContext(_contextOptions);
+            // Get DB Object list of customers
+            var dbCustomers = context.Customers.Where(sn => sn.Name.Contains(name));
+            // Make DB list into Web App Customers list
+            var appCustomers = dbCustomers.Select(c => new CustomerClass(c.Name, c.Id)).ToList();
+            // return customer list
+            return appCustomers;
+        }
+
         /// <summary>
         /// Method runs when creating a new 
         /// </summary>

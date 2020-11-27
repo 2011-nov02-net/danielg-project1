@@ -118,8 +118,12 @@ namespace danielg_projectOne.DataModel.Repositories
         public Location CreateStoreWithInventory(int storeID);
 
 
-
-
+        /// <summary>
+        /// Search for customer by name
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public List<CustomerClass> GetAllCustomersByName(string name);
 
 
 

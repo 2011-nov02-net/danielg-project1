@@ -20,9 +20,10 @@ namespace danielg_projectOne.Controllers
 
 
         // GET: /<controller>/
-        public IActionResult Index()
+        public IActionResult Index(string search = "")
         {
-            List<CustomerClass> custs = Repo.GetAllCustomers();
+            List<CustomerClass> custs = Repo.GetAllCustomersByName(search);
+            List<CustomerClass> custss = Repo.GetAllCustomers();
             IEnumerable<CustomerViewModel> vmCusts = custs.Select(c => new CustomerViewModel
             {
                 ID = c.Id,
