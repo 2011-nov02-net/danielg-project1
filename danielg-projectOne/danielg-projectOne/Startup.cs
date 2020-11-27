@@ -31,6 +31,7 @@ namespace danielg_projectOne
 
             services.AddDbContext<danielGProj0DBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("McDB")));
 
+            // "If anyone asks for an I__Repository, give them a ___Repository"
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<IManagerRepository, ManagerRepository>();
 
