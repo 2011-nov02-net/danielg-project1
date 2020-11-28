@@ -19,7 +19,7 @@ namespace danielg_projectOne.Controllers
             Repo = repo ?? throw new ArgumentNullException(nameof(repo));
 
 
-        // GET: /<controller>/
+        // GET: /Customer?search
         public IActionResult Index(string search = "")
         {
             List<CustomerClass> custs = Repo.GetAllCustomersByName(search);
@@ -32,6 +32,18 @@ namespace danielg_projectOne.Controllers
 
 
             return View(vmCusts);
+        }
+
+        // GET :/Customer/Home/id
+        public IActionResult Home(int id = 0)
+        {
+            if (id == 0)
+            {
+                // No 
+            }
+
+
+            return View();
         }
     }
 }

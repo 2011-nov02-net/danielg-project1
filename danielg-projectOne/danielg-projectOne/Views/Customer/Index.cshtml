@@ -17,8 +17,9 @@
     <form asp-action="Index" method="GET" class="form-inline">
         <label class="sr-only" for="search">Search for yourself here:</label>
         <input type="search" class="form-control mb-2 mr-sm-2 mb-sm-0" id="search" name="search" placeholder="Search" />
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div><button type="submit" class="btn btn-primary">Submit</button> | OR | @Html.ActionLink("Create Account", "Create", "Customer")</div>
     </form>
+    
 </div>
 
 
@@ -44,7 +45,7 @@
                     @Html.DisplayFor(model => cust.FullName)
                 </td>
                 <td>
-                    @Html.ActionLink("Sign in", "SignIn", "Customer", cust.ID)
+                    @Html.ActionLink("Sign in", "Home", "Customer", new { cust.ID })
                 </td>
             </tr>
         }
