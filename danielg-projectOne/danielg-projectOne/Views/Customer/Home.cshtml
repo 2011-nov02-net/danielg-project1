@@ -1,4 +1,65 @@
 ﻿@*
+
 *@
+
+@model IEnumerable<CustomerOrderViewModel>
+
 @{
+    ViewData["Title"] = "Customer";
 }
+
+<h1>Customer Orders</h1>
+<div>
+    <h4>View Orders or Choose to make a new order</h4>
+</div>
+
+<div>
+    <form asp-action="Index" method="GET" class="form-inline">
+        <label class="sr-only" for="search">Search for yourself here:</label>
+        <input type="search" class="form-control mb-2 mr-sm-2 mb-sm-0" id="search" name="search" placeholder="Search" />
+        <div><button type="submit" class="btn btn-primary">Submit</button> | OR | @Html.ActionLink("Create Account", "Create", "Customer")</div>
+    </form>
+
+</div>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => order.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(model => order.Location)
+            </td>
+            <td>
+                $@Html.DisplayFor(model => order.Cost)
+            </td>
+            <td>
+                @Html.DisplayFor(model => order.Date)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", "Order", new { order.ID })
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

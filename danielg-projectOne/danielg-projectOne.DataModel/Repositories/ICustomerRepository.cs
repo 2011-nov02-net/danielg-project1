@@ -126,8 +126,12 @@ namespace danielg_projectOne.DataModel.Repositories
         public List<CustomerClass> GetAllCustomersByName(string name);
 
 
-
-
+        /// <summary>
+        /// Returns all orders by a customer, with the details so a price can be calculated
+        /// </summary>
+        /// <param name="custID"></param>
+        /// <returns></returns>
+        public IEnumerable<IOrder> GetCustomersOrders(int custID);
 
 
     }

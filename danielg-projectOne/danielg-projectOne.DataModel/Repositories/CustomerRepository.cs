@@ -249,6 +249,41 @@ namespace danielg_projectOne.DataModel.Repositories
 
 
         /// <summary>
+        /// Returns all orders by a customer, with the details so a price can be calculated
+        /// </summary>
+        /// <param name="custID"></param>
+        /// <returns></returns>
+        public IEnumerable<IOrder> GetCustomersOrders(int custID)
+        {
+            using var context = new danielGProj0DBContext(_contextOptions);
+
+            var generalOrders = context.GenOrders.Where(o => o.CustomerId == custID).ToList();
+
+            var aggregatedOrders = new List<IOrder>();
+
+            foreach (var order in generalOrders)
+            {
+                var tempCust = GetCustomerFromID(order.CustomerId);
+
+                var tempLocation = GetStoreFromID(order.StoreId);
+
+                Order tempOrder = new Order(tempLocation, tempCust, order.Id, order.Date);
+
+                var listAggOrders = context.AggOrders.Where(o => o.OrderId == order.Id);
+
+                foreach (var agOrder in listAggOrders)
+                {
+                    // Add the aggregateOrders essentially as orders being placed so I can
+                    //   Just keep them in memory and move them
+                    tempOrder.Customer.ShoppingCart.Add(agOrder.Product, agOrder.Amount);
+                }
+                // Add each order with details to 
+                aggregatedOrders.Add(tempOrder);
+            }
+            return aggregatedOrders;
+        }
+
+        /// <summary>
         /// Return a store based on the storeID passed in
         /// </summary>
         /// <param name="storeID"></param>

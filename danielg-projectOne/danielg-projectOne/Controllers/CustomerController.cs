@@ -39,8 +39,38 @@ namespace danielg_projectOne.Controllers
         {
             if (id == 0)
             {
-                // No 
+                // No customer was able to sign in, this shouldnt happen
             }
+            // Create list of viewmodel to pass to view method in return
+            IEnumerable<CustomerOrderViewModel> custOrders = null;
+
+            try
+            {
+                
+                var storeProducts = Repo.GetProducts();
+                var customersOrders = Repo.GetCustomersOrders(id);
+
+                custOrders = customersOrders.Select(c => new CustomerOrderViewModel
+                {
+                    ID = c.OrderID,
+                    Location = c.Location.CityLocation,
+                    Cost = c.CalculateTotal(storeProducts),
+                    Date = c.Date
+                });
+
+            }
+            catch (Exception ex)
+            {
+                // Do error handling
+            }
+            
+
+            return View(custOrders);
+        }
+
+
+        public IActionResult Create()
+        {
 
 
             return View();
