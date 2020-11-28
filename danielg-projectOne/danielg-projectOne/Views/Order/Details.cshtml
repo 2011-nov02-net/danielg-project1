@@ -1,5 +1,50 @@
 ﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
 *@
+
+@model IEnumerable<OrderDetailsViewModel>
+
 @{
+    ViewData["Title"] = "Order";
 }
+
+<h1>Order Details</h1>
+<div>
+    <h4>Here is what you ordered</h4>
+</div>
+
+<div>
+    <form asp-action="Index" method="GET" class="form-inline">
+        <label class="sr-only" for="search">Search for yourself here:</label>
+        <input type="search" class="form-control mb-2 mr-sm-2 mb-sm-0" id="search" name="search" placeholder="Search" />
+        <div><button type="submit" class="btn btn-primary">Submit</button> | OR | @Html.ActionLink("Create Account", "Create", "Customer")</div>
+    </form>
+
+</div>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Product)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => order.Product)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => order.Amount)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

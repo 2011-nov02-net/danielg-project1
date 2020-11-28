@@ -134,5 +134,13 @@ namespace danielg_projectOne.DataModel.Repositories
         public IEnumerable<IOrder> GetCustomersOrders(int custID);
 
 
+        /// <summary>
+        /// Returns the product and amount that were in a specific order
+        /// </summary>
+        /// <param name="orderID"></param>
+        /// <returns></returns>
+        public Dictionary<string, int> GetOrderDetails(int orderID);
+
+
     }
 }

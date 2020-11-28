@@ -23,6 +23,7 @@ namespace danielg_projectOne.DataModel.Repositories
             _contextOptions = contextOptions;
         }
 
+
         /// <summary>
         /// Method returns list of Web App customers from the database model
         /// </summary>
@@ -230,6 +231,7 @@ namespace danielg_projectOne.DataModel.Repositories
                 Order tempOrder = new Order(tempLocation, tempCust, order.Id, order.Date);
                 // Create list of all the aggregateOrders from a store Location 
                 var listAggOrders = context.AggOrders.Where(o => o.OrderId == order.Id);
+
                 foreach (var agOrder in listAggOrders)
                 {
                     // Add the aggregateOrders essentially as orders being placed so I can
@@ -246,6 +248,20 @@ namespace danielg_projectOne.DataModel.Repositories
 
             return customerHere;
         }
+
+
+        public Dictionary<string, int> GetOrderDetails(int orderID)
+        {
+            // Create the context
+            using var context = new danielGProj0DBContext(_contextOptions);
+
+            var listAggOrders = context.AggOrders.Where(o => o.OrderId == orderID);
+
+            Dictionary<string, int> shoppingCart = listAggOrders.ToDictionary(o => o.Product, o => o.Amount);
+
+            return shoppingCart;
+        }
+
 
 
         /// <summary>
