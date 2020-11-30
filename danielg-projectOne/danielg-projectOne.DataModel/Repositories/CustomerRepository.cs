@@ -162,7 +162,7 @@ namespace danielg_projectOne.DataModel.Repositories
 
 
         /// <summary>
-        /// Get amount of GenOrders(Number of orders placed Company wide)
+        /// Get amount of GenOrders(Number of orders placed Company wide at all locations)
         /// </summary>
         /// <returns></returns>
         public int GetAmountOfGenOrders()
@@ -254,9 +254,9 @@ namespace danielg_projectOne.DataModel.Repositories
         {
             // Create the context
             using var context = new danielGProj0DBContext(_contextOptions);
-
+            // Get the order details that match the orderID
             var listAggOrders = context.AggOrders.Where(o => o.OrderId == orderID);
-
+            // Create a dictionary that is a completely compiled order with product and amount ordered
             Dictionary<string, int> shoppingCart = listAggOrders.ToDictionary(o => o.Product, o => o.Amount);
 
             return shoppingCart;

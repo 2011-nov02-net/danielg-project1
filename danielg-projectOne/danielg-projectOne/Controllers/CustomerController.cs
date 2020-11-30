@@ -53,10 +53,11 @@ namespace danielg_projectOne.Controllers
 
             try
             {
-                
+                // Get all of the products a store has, for prices
                 var storeProducts = Repo.GetProducts();
+                // Get the Web App orders from the DB based on the CustomerId that was passed in 
                 var customersOrders = Repo.GetCustomersOrders(id);
-
+                // Create a list of 
                 custOrders = customersOrders.Select(c => new CustomerOrderViewModel
                 {
                     ID = c.OrderID,
@@ -83,10 +84,20 @@ namespace danielg_projectOne.Controllers
 
         // POST: Customer/Create
         [HttpPost]
-        public IActionResult Create([BindAttribute("FullName")] CustomerViewModel name)
+        public IActionResult Create([Bind("FullName")] CustomerViewModel custVM)
         {
-            string customerName = name.FullName;
+            if (ModelState.IsValid)
+            {
+                // Get the name that the user passed into the view
+                string customerName = custVM.FullName;
+                // Create a Web App customer with the provided name
+                var newCustomer = new CustomerClass(customerName);
+                // Create a customer in the database with the Web App UI
+                Repo.CreateCustomerInDb(newCustomer);
 
+                return RedirectToAction(nameof(Index));
+            }
+           
 
             return View();
         }
