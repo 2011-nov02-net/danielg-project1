@@ -12,9 +12,15 @@ namespace danielg_projectOne.Controllers
 {
     public class CustomerController : Controller
     {
-
+        /// <summary>
+        /// Create the Repository field that will search the DB for this controller
+        /// </summary>
         public ICustomerRepository Repo { get;  }
 
+        /// <summary>
+        /// Assign a Repository to the Controller 
+        /// </summary>
+        /// <param name="repo"></param>
         public CustomerController(ICustomerRepository repo) =>
             Repo = repo ?? throw new ArgumentNullException(nameof(repo));
 

@@ -29,26 +29,31 @@ namespace danielg_projectOne.Controllers
             return View();
         }
 
-
+        /// <summary>
+        /// Get the details of an order(Products and amounts) based on the orderID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public IActionResult Details(int id = 0)
         {
             if (id == 0)
             {
                 // if orderID was not sent, this should not happen
             }
-
+            // Create the cart that was already ordered
             Dictionary<string, int> cart = Repo.GetOrderDetails(id);
-
+            // Create the list of pieces of the order to add to
             List<OrderDetailsViewModel> orderViewModels = new List<OrderDetailsViewModel>();
-
+            // Iterate through the cart 
             foreach (var item in cart)
             {
-
+                // Create each piece of the order for the viewmodel to show to the user
                 OrderDetailsViewModel orderPiece = new OrderDetailsViewModel
                 {
                     Product = item.Key,
                     Amount = item.Value
                 };
+                // Add each piece of the order to the viewmodel to show to the user
                 orderViewModels.Add(orderPiece);
             }
             return View(orderViewModels);
