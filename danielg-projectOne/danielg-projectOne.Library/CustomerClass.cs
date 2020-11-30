@@ -55,9 +55,13 @@ namespace danielg_projectOne.Library
             public Dictionary<string, int> ShoppingCart { get => shoppingCart; set => shoppingCart = value; }
 
             /// <summary>
-            /// Property to get or set the name of a customer.
+            /// Property to get the name of a customer.
             /// </summary>
             public string Name { get; }
+
+            /// <summary>
+            /// Property to get the name of a customer
+            /// </summary>
             public int Id { get; }
 
             /// <summary>

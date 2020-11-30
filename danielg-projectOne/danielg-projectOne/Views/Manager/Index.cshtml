@@ -1,6 +1,53 @@
 ﻿@*
 
 *@
+
+@model IEnumerable<StoreViewModel>
+
 @{
-    ViewData["Title"] = "Managers";
+    ViewData["Title"] = "Manager";
 }
+
+<h1>Manager</h1>
+<div>
+    <h4>Pick a Location to View</h4>
+</div>
+
+<div>
+    <form asp-action="Index" method="GET" class="form-inline">
+        <label class="sr-only" for="search">Search for a location here:</label>
+        <input type="search" class="form-control mb-2 mr-sm-2 mb-sm-0" id="search" name="search" placeholder="Search" />
+        <div><button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+</div>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var store in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => store.ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => store.Location)
+                </td>
+                <td>
+                    @Html.ActionLink("View", "Home", "Manager", new { store.ID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

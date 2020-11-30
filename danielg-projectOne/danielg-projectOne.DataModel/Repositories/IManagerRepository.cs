@@ -63,8 +63,12 @@ namespace danielg_projectOne.DataModel.Repositories
         /// <returns></returns>
         public List<danielg_projectOne.Library.Product> GetProducts();
 
-
-
+        /// <summary>
+        /// Find stores based on their location
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public List<Location> GetAllStoresByLocation(string location);
 
 
     }

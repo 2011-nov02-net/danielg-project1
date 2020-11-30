@@ -28,8 +28,9 @@ namespace danielg_projectOne.Controllers
         // GET: /Customer?search
         public IActionResult Index(string search = "")
         {
+            // Get the list of all customers matching the search string
             List<CustomerClass> custs = Repo.GetAllCustomersByName(search);
-            List<CustomerClass> custss = Repo.GetAllCustomers();
+            // Populate a list of Customer view model with the list of web app customers
             IEnumerable<CustomerViewModel> vmCusts = custs.Select(c => new CustomerViewModel
             {
                 ID = c.Id,

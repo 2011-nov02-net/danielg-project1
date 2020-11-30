@@ -176,5 +176,21 @@ namespace danielg_projectOne.DataModel.Repositories
             return appProducts;
         }
 
+        /// <summary>
+        /// Find stores based on their location
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public List<Location> GetAllStoresByLocation(string location="")
+        {
+            // Create context
+            using var context = new danielGProj0DBContext(_contextOptions);
+            // Get Db object list of stores
+            var dbStores = context.Stores.Where(s => s.Location.Contains(location));
+            // Make DB list into web app stores list
+            var appStores = dbStores.Select(s => new Location(s.Location, s.Id)).ToList();
+            // return list of web app customers
+            return appStores;
+        }
     }
 }
