@@ -12,7 +12,7 @@ namespace danielg_projectOne.Models
 
         [Display(Name = "Name")]
         [Required]
-        [RegularExpression(@"[A-Za-z]", ErrorMessage = "Name must only contain letters")]
+        [RegularExpression(@"^[A-Za-z\s]+$", ErrorMessage = "Name must only contain letters or spaces")]
         public string FullName { get; set; }
     }
 }
