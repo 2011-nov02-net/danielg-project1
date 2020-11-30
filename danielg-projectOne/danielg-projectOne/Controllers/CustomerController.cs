@@ -75,12 +75,21 @@ namespace danielg_projectOne.Controllers
             return View(custOrders);
         }
 
-
+        // GET: Customer/Create
         public IActionResult Create()
         {
+            return View();
+        }
+
+        // POST: Customer/Create
+        [HttpPost]
+        public IActionResult Create([BindAttribute("FullName")] CustomerViewModel name)
+        {
+            string customerName = name.FullName;
 
 
             return View();
         }
+
     }
 }

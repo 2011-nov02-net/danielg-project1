@@ -271,29 +271,31 @@ namespace danielg_projectOne.DataModel.Repositories
         /// <returns></returns>
         public IEnumerable<IOrder> GetCustomersOrders(int custID)
         {
+            // Create Context 
             using var context = new danielGProj0DBContext(_contextOptions);
-
+            // Compile the database orders that match the Customers ID
             var generalOrders = context.GenOrders.Where(o => o.CustomerId == custID).ToList();
-
+            // Create a list of Web App orders to add orders to
             var aggregatedOrders = new List<IOrder>();
-
+            // Iterate through the Customers orders
             foreach (var order in generalOrders)
             {
+                // Create the Customer for the currently iterated order
                 var tempCust = GetCustomerFromID(order.CustomerId);
-
+                // Create the Location for the currently iterated order
                 var tempLocation = GetStoreFromID(order.StoreId);
-
+                // Create the Web App order to be added to the List of orders
                 Order tempOrder = new Order(tempLocation, tempCust, order.Id, order.Date);
-
+                // Find all of the order details that match the OrderID 
                 var listAggOrders = context.AggOrders.Where(o => o.OrderId == order.Id);
-
+                // Iterate through the order details 
                 foreach (var agOrder in listAggOrders)
                 {
                     // Add the aggregateOrders essentially as orders being placed so I can
                     //   Just keep them in memory and move them
                     tempOrder.Customer.ShoppingCart.Add(agOrder.Product, agOrder.Amount);
                 }
-                // Add each order with details to 
+                // Add each order with details to the list of orders
                 aggregatedOrders.Add(tempOrder);
             }
             return aggregatedOrders;
