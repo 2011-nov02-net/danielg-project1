@@ -7,12 +7,12 @@ namespace danielg_projectOne.Models
     {
 
         [Display(Name = "ID")]
-        [Required]
         public int ID { get; set; }
 
 
         [Display(Name = "Name")]
         [Required]
+        [RegularExpression(@"[A-Za-z]", ErrorMessage = "Name must only contain letters")]
         public string FullName { get; set; }
     }
 }
