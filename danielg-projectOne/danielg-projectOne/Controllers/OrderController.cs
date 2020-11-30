@@ -50,14 +50,7 @@ namespace danielg_projectOne.Controllers
                     Amount = item.Value
                 };
                 orderViewModels.Add(orderPiece);
-                //orderViewModels.Append(orderPiece);
-                //orderViewModels.Append(new OrderDetailsViewModel
-                //{
-                //    Product = item.Key,
-                //    Amount = item.Value
-                //});
             }
-
             return View(orderViewModels);
         }
     }
