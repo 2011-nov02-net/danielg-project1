@@ -40,5 +40,39 @@ namespace danielg_projectOne.Controllers
 
             return View(vmStores);
         }
+
+
+        public IActionResult Home(int id = 0)
+        {
+            if (id == 0)
+            {
+                // No customer was able to sign in, this shouldnt happen
+            }
+            // Create list of viewmodel to pass to view method in return
+            IEnumerable<StoreOrderViewModel> storeOrders = null;
+
+            try
+            {
+
+                var storeProducts = Repo.GetProducts();
+                var storesOrders = Repo.GetStoresOrders(id);
+
+                storeOrders = storesOrders.Select(c => new StoreOrderViewModel
+                {
+                    ID = c.OrderID,
+                    Customer = c.Location.CityLocation,
+                    Cost = c.CalculateTotal(storeProducts),
+                    Date = c.Date
+                });
+
+            }
+            catch (Exception ex)
+            {
+                // Do error handling
+            }
+
+
+            return View(storeOrders);
+        }
     }
 }

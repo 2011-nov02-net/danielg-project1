@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using danielg_projectOne.Library;
+using danielg_projectOne.Library.Order;
 
 namespace danielg_projectOne.DataModel.Repositories
 {
@@ -70,6 +71,11 @@ namespace danielg_projectOne.DataModel.Repositories
         /// <returns></returns>
         public List<Location> GetAllStoresByLocation(string location);
 
-
+        /// <summary>
+        /// Returns all orders from a store, with the details so a price can be calculated
+        /// </summary>
+        /// <param name="custID"></param>
+        /// <returns></returns>
+        public IEnumerable<IOrder> GetStoresOrders(int storeID);
     }
 }
