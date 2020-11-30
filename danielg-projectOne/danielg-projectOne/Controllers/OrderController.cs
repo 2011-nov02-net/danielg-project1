@@ -39,15 +39,23 @@ namespace danielg_projectOne.Controllers
 
             Dictionary<string, int> cart = Repo.GetOrderDetails(id);
 
-            IEnumerable<OrderDetailsViewModel> orderViewModels = new List<OrderDetailsViewModel>();
+            List<OrderDetailsViewModel> orderViewModels = new List<OrderDetailsViewModel>();
 
             foreach (var item in cart)
             {
-                orderViewModels.Append(new OrderDetailsViewModel
+
+                OrderDetailsViewModel orderPiece = new OrderDetailsViewModel
                 {
                     Product = item.Key,
                     Amount = item.Value
-                });
+                };
+                orderViewModels.Add(orderPiece);
+                //orderViewModels.Append(orderPiece);
+                //orderViewModels.Append(new OrderDetailsViewModel
+                //{
+                //    Product = item.Key,
+                //    Amount = item.Value
+                //});
             }
 
             return View(orderViewModels);
