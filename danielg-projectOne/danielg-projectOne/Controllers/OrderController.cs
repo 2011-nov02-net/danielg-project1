@@ -69,5 +69,17 @@ namespace danielg_projectOne.Controllers
             });
             return View(vmStores);
         }
+
+
+        public IActionResult OrderProducts(int id = 0, int storeID = 0)
+        {
+            // First, I am going to get the customer...
+            var currentCustomer = Repo.GetCustomerFromID(id);
+            // ...And the store
+            var currentLocation = Repo.CreateStoreWithInventory(storeID);
+
+            
+            return View();
+        }
     }
 }
