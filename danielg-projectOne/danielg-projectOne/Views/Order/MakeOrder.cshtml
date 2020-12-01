@@ -1,32 +1,42 @@
-﻿@model PlaceOrderViewModel
+﻿@model IEnumerable<StoreViewModel>
 @{
     ViewData["Title"] = "Order";
 }
 <h1>Place an Order</h1>
 <div>
-    <h4>Choose a Location and Make your Order!</h4>
+    <h4>Choose a Location to Make your Order!</h4>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="MakeOrder">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="FullName" class="control-label"></label>
-                <input asp-for="FullName" class="form-control" />
-                <span asp-validation-for="FullName" class="text-danger"></span>
-            </div>a
-            <div class="form-group">
-                <input type="submit" value="MakeOrder" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var store in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => store.ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => store.Location)
+                </td>
+                <td>
+                    @Html.ActionLink("Order Here", "OrderProducts", "Order", new { id = ViewBag.CustomerID, storeID = store.ID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
 
 <div>
     <a asp-action="">Cancel Order</a>
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

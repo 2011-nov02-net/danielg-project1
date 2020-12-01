@@ -20,9 +20,6 @@ namespace danielg_projectOne.Controllers
         public OrderController(ICustomerRepository repo) =>
             Repo = repo ?? throw new ArgumentNullException(nameof(repo));
 
-
-
-
         // GET: /<controller>/
         public IActionResult Index()
         {
@@ -64,8 +61,13 @@ namespace danielg_projectOne.Controllers
         {
             int customerID = id;
             ViewBag.CustomerID = id;
-
-            return View();
+            List<Location> stores = Repo.GetStores();
+            IEnumerable<StoreViewModel> vmStores = stores.Select(s => new StoreViewModel
+            {
+                ID = s.Id,
+                Location = s.CityLocation
+            });
+            return View(vmStores);
         }
     }
 }
