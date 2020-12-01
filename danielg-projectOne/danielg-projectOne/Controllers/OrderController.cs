@@ -78,8 +78,14 @@ namespace danielg_projectOne.Controllers
             // ...And the store
             var currentLocation = Repo.CreateStoreWithInventory(storeID);
 
+            // 
+            // Create the ViewModel to send to the View. It should have the inventory at least
+            PlaceOrderViewModel poVM = new PlaceOrderViewModel
+            {
+                StockedItems = currentLocation.Inventory
+            };
             
-            return View();
+            return View(poVM);
         }
     }
 }
