@@ -97,7 +97,7 @@ namespace danielg_projectOne.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
-           
+
 
             return View();
         }

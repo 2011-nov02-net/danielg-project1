@@ -58,13 +58,6 @@ namespace danielg_projectOne
 
             app.UseAuthorization();
 
-            //app.UseEndpoints(endpoints =>
-            //{
-            //    endpoints.MapControllerRoute(
-            //        name: "order",
-            //        pattern: "{controller=Order}/{action=Details}/{id?}");
-            //});
-
 
             app.UseEndpoints(endpoints =>
             {
@@ -75,6 +68,10 @@ namespace danielg_projectOne
                 endpoints.MapControllerRoute(
                     name: "order",
                     pattern: "{controller=Order}/{action=Details}/{id?}");
+
+                endpoints.MapControllerRoute(
+                    name: "newOrder",
+                    pattern: "{controller=Order}/{action=MakeOrder}/{id?}");
             });
         }
     }

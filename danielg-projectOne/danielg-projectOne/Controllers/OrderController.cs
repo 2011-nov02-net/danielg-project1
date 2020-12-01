@@ -58,5 +58,12 @@ namespace danielg_projectOne.Controllers
             }
             return View(orderViewModels);
         }
+
+
+        public IActionResult MakeOrder()
+        {
+
+            return View();
+        }
     }
 }
