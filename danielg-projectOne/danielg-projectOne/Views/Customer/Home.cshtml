@@ -11,9 +11,9 @@
 <head>
     <style>
         .centerDiv {
-            width: 110px;
+            width: 150px;
             margin: auto;
-            height: 60px;
+            height: 30px;
             border: 2px solid #000000;
             text-align: center
         }
@@ -32,7 +32,7 @@
 
 
     <div class="centerDiv">
-        @Html.ActionLink("Place a New Order", "MakeOrder", "Order")
+        @Html.ActionLink("Place a New Order", "MakeOrder", "Order", new { id = ViewBag.CustomerID })
     </div>
     <div class="spaceDiv">
     </div>
@@ -41,7 +41,7 @@
         <form asp-action="Index" method="GET" class="form-inline">
             <label class="sr-only" for="search">Search for yourself here:</label>
             <input type="search" class="form-control mb-2 mr-sm-2 mb-sm-0" id="search" name="search" placeholder="Search" />
-            <div><button type="submit" class="btn btn-primary">Submit</button>
+            <div><button type="submit" class="btn btn-primary">Submit</button></div>
         </form>
 
     </div>

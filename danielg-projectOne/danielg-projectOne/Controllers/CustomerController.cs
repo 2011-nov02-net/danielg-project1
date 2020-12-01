@@ -50,7 +50,8 @@ namespace danielg_projectOne.Controllers
             }
             // Create list of viewmodel to pass to view method in return
             IEnumerable<CustomerOrderViewModel> custOrders = null;
-
+            // Add the CustomerID to the viewBag so that I can pass it into the next query string
+            ViewBag.CustomerID = id;
             try
             {
                 // Get all of the products a store has, for prices

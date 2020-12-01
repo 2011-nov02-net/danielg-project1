@@ -60,8 +60,10 @@ namespace danielg_projectOne.Controllers
         }
 
 
-        public IActionResult MakeOrder()
+        public IActionResult MakeOrder(int id = 0)
         {
+            int customerID = id;
+            ViewBag.CustomerID = id;
 
             return View();
         }
