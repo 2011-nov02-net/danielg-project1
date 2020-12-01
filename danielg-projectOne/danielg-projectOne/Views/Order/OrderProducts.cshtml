@@ -27,6 +27,33 @@
         <a asp-action="Index">Back to List</a>
     </div>
 
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Item
+                </th>
+                <th>
+                    Amount Desired
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.StockedItems)
+            {
+                <tr>
+                    <td>
+                        @item.Key
+                    </td>
+                    <td>
+                        text box to get data 
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
     @section Scripts {
         @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     }
