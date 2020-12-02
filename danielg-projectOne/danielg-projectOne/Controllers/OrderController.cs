@@ -98,5 +98,13 @@ namespace danielg_projectOne.Controllers
             
             return View(poVM);
         }
+
+        [HttpPost]
+        public IActionResult OrderProducts([Bind("ProductViewModels, FullName")] PlaceOrderViewModel poVM)
+        {
+            var productVM = poVM.ProductViewModels;
+
+            return View();
+        }
     }
 }
