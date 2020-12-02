@@ -1,17 +1,31 @@
-# ASP.NET Core
-# Build and test ASP.NET Core projects targeting .NET Core.
-# Add steps that run tests, create a NuGet package, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+# this file defines a pipeline, a set of rules for building and validating source code in a repo
+# written in a format called YAML 
+
+# trigger defines when the pipeline will run
+# list of branches syntax, if a branch gets a push, the pipeline will run
 
 trigger:
-- main
-
+  branches:
+   include:
+     - master
+  paths: 
+   include:
+     - danielg-projectOne
+    
+# short for agent pool as in "build agent"
+# i.e. what set of machines will be the build agents to run these steps
 pool:
   vmImage: 'ubuntu-latest'
 
+# variables common to multiple steps
 variables:
   buildConfiguration: 'Release'
 
+# these steps are run in sequence by the build agent
+# in a directory that contains the most recent push on that branch of that repo
+# if any step fails, that will halt the build and subsequent steps will not run
 steps:
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
+  workingDirectory: danielg-projectOne
+
