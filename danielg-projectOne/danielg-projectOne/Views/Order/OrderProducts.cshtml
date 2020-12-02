@@ -1,59 +1,87 @@
 ﻿@model PlaceOrderViewModel
-    @{
-        ViewData["Title"] = "Create";
-    }
-    <h1>Customers</h1>
-    <div>
-        <h4>Create a new Account</h4>
+@{
+    ViewData["Title"] = "Create";
+}
+<h1>Place Order</h1>
+<div>
+    <h4>Select Amounts you would like to order</h4>
+</div>
+
+
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                @foreach (var item in Model.ProductViewModels)
+                {
+                    <label asp-for="@item.ProductName" class="control-label"></label>
+                    <input asp-for="@item.ProductName" class="form-control" />
+                }
+                <span asp-validation-for="FullName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
     </div>
+</div>
 
-    <div class="row">
-        <div class="col-md-4">
-            <form asp-action="Create">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="FullName" class="control-label"></label>
-                    <input asp-for="FullName" class="form-control" />
-                    <span asp-validation-for="FullName" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-primary" />
-                </div>
-            </form>
-        </div>
+
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                @foreach (var item in Model.ProductViewModels)
+                {
+                    <label for="@item.ProductName" class="control-label">@item.ProductName</label>
+                    <input asp-for="@item.Amount" class="form-control" />
+                }
+                <span asp-validation-for="FullName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
     </div>
-
-    <div>
-        <a asp-action="Index">Back to List</a>
-    </div>
+</div>
 
 
-    <table class="table">
-        <thead>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Item
+            </th>
+            <th>
+                Amount Desired
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.ProductViewModels)
+        {
             <tr>
-                <th>
-                    Item
-                </th>
-                <th>
-                    Amount Desired
-                </th>
+                <td>
+                    @item.ProductName
+                </td>
+                <td>
+                    text box to get data
+                </td>
             </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.StockedItems)
-            {
-                <tr>
-                    <td>
-                        @item.Key
-                    </td>
-                    <td>
-                        text box to get data 
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+        }
+    </tbody>
+</table>
 
-    @section Scripts {
-        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    }
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

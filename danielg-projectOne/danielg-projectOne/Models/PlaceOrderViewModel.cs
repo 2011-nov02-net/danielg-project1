@@ -17,5 +17,9 @@ namespace danielg_projectOne.Models
 
         [Display(Name = "Item")]
         public Dictionary<string, int> StockedItems { get; set; }
+
+        // might want to make a model that is a product and int then have an ienumerable of it
+        [Display(Name = "All Products")]
+        public IEnumerable<ProductViewModel> ProductViewModels { get; set; }
     }
 }
