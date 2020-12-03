@@ -351,6 +351,6 @@ MigrationBackup/
 
 
 # Git ignore files that I want to add
-danielg-projectOne/danielg-projectOne/appsettings.json
+danielg-projectOne/danielg-projectOne/appsettings.Development.json
 
 
