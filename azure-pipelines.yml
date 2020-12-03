@@ -12,6 +12,7 @@ trigger:
    include:
      - danielg-projectOne
      - azure-pipelines.yml
+
 # short for agent pool as in "build agent"
 # i.e. what set of machines will be the build agents to run these steps
 pool:
@@ -81,6 +82,7 @@ steps:
 
 - task: AzureRmWebAppDeployment@4
   displayName: azure app service deploy
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   inputs:
     ConnectionType: 'AzureRM'
     azureSubscription: 'Azure subscription 1(f77db9df-7664-4dcc-ba6e-3fd840c8de99)'
