@@ -11,7 +11,7 @@ trigger:
   paths: 
    include:
      - danielg-projectOne
-    
+     - azure-pipelines.yml
 # short for agent pool as in "build agent"
 # i.e. what set of machines will be the build agents to run these steps
 pool:
@@ -32,7 +32,7 @@ steps:
 - task: UseDotNet@2
   inputs:
     packageType: 'sdk'
-    version: 5.x
+    version: 3.1.x
 
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
@@ -40,6 +40,7 @@ steps:
 
 # Added this task 12/3
 - task: DotNetCoreCLI@2
+  displayName: dotnet test
   inputs:
     command: 'test'
     arguments: '--configuration $(buildConfiguration)'
