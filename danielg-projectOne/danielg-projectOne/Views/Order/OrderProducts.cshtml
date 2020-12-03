@@ -10,13 +10,11 @@
 
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="OrderProducts">
+        <form asp-action="OrderProducts" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 @for (int i = 0; i < Model.ProductViewModels.Count(); i++)
                 {
-                    
-
                     <label asp-for="@Model.ProductViewModels[i].ProductName" class="control-label">@Model.ProductViewModels[i].ProductName</label>
                     <input asp-for="@Model.ProductViewModels[i].Amount" class="form-control" />
                     <input asp-for="@Model.ProductViewModels[i].ProductName" type="hidden"class="control-label" />

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using danielg_projectOne.DataModel.Repositories;
 using danielg_projectOne.Library;
+using danielg_projectOne.Library.Order;
 using danielg_projectOne.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -56,7 +57,7 @@ namespace danielg_projectOne.Controllers
             return View(orderViewModels);
         }
 
-
+        
         public IActionResult MakeOrder(int id = 0)
         {
             int customerID = id;
@@ -75,9 +76,10 @@ namespace danielg_projectOne.Controllers
         {
             // First, I am going to get the customer...
             var currentCustomer = Repo.GetCustomerFromID(id);
+            TempData["currentCustomer"] = id;
             // ...And the store
             var currentLocation = Repo.CreateStoreWithInventory(storeID);
-
+            TempData["currentStore"] = storeID;
             List<ProductViewModel> products = new List<ProductViewModel>();
 
             foreach (var item in currentLocation.Inventory)
@@ -99,12 +101,40 @@ namespace danielg_projectOne.Controllers
             return View(poVM);
         }
 
+
+
         [HttpPost]
-        public IActionResult OrderProducts([Bind("ProductViewModels, FullName")] PlaceOrderViewModel poVM)
+        [ValidateAntiForgeryToken]
+        public IActionResult OrderProducts([Bind("ProductViewModels")] PlaceOrderViewModel poVM)
         {
+            // Products and Amounts 
             var productVM = poVM.ProductViewModels;
 
-            return View();
+            var currentCustomer = TempData["currentCustomer"];
+            var currentCustomerSignIn = Repo.GetCustomerFromID((int)currentCustomer);
+
+            foreach (var prod in productVM)
+            {
+                currentCustomerSignIn.AddToCart(prod.ProductName, prod.Amount);
+            }
+
+            var currentStore = TempData["currentStore"];
+            var currentStoreChosen = Repo.CreateStoreWithInventory((int)currentStore);
+
+            IOrder thisOrder = new Order(currentStoreChosen, currentCustomerSignIn);
+
+            List<Product> products = Repo.GetProducts();
+
+            thisOrder.CalculateTotal(products);
+
+            bool inventorySufficient = currentStoreChosen.OrderPlaced(thisOrder);
+
+            if (inventorySufficient)
+            {
+                Repo.SendGenOrderToDB(thisOrder);
+            }
+
+            return RedirectToAction("Home", "Customer", new { id = currentCustomer });
         }
     }
 }

@@ -85,6 +85,7 @@ namespace danielg_projectOne.Controllers
 
         // POST: Customer/Create
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Create([Bind("FullName")] CustomerViewModel custVM)
         {
             if (ModelState.IsValid)
