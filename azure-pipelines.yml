@@ -45,6 +45,7 @@ steps:
     scannerMode: 'MSBuild'
     projectKey: '2011-nov02-net_danielg-project1'
     projectName: 'Project One Web App'
+    extraProperties: 'sonar.exclusions=**/lib/**'
 
 - task: UseDotNet@2
   displayName: dotnet sdk $(sdkVersion) 
