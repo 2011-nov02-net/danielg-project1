@@ -15,22 +15,17 @@
             <div class="form-group">
                 @for (int i = 0; i < Model.ProductViewModels.Count(); i++)
                 {
-                    var = Model.ProductViewModels.;
-                    <label asp-for="@item.ProductName" class="control-label">@item.ProductName</label>
-                    <input asp-for="@item.Amount" class="form-control" />
+                    
+
+                    <label asp-for="@Model.ProductViewModels[i].ProductName" class="control-label">@Model.ProductViewModels[i].ProductName</label>
+                    <input asp-for="@Model.ProductViewModels[i].Amount" class="form-control" />
+                    <input asp-for="@Model.ProductViewModels[i].ProductName" type="hidden"class="control-label" />
                 }
 
-
-
-                @foreach (var item in Model.ProductViewModels)
-                {
-                    <label asp-for="@item.ProductName" class="control-label">@item.ProductName</label>
-                    <input asp-for="@item.Amount" class="form-control" />
-                    @*Gonna use the stack overflow page firs thing tomorrow, instead of [i] use the name maybe to call by name instead of index *@
-                }
-                <label asp-for="FullName" class="control-label"></label>
-                <input asp-for="FullName" class="form-control" />
-
+                @*
+        <label asp-for="FullName" class="control-label"></label>
+        <input asp-for="FullName" class="form-control" />
+                *@
                 <span asp-validation-for="FullName" class="text-danger"></span>
             </div>
             <div class="form-group">

@@ -16,9 +16,9 @@ namespace danielg_projectOne.Models
         public Dictionary<string, int> StockedItems { get; set; }
 
         [Display(Name = "All Products")]
-        public IEnumerable<ProductViewModel> ProductViewModels { get; set; }
+        public IList<ProductViewModel> ProductViewModels { get; set; }
 
-        [Display(Name = )]
+        [Display(Name = "Location")]
         public Location StoreLocation { get; set; }
     }
 }
