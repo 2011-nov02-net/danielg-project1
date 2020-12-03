@@ -46,3 +46,16 @@ steps:
     arguments: '--configuration $(buildConfiguration)'
     publishTestResults: true
     workingDirectory: 'danielg-projectOne'
+
+- script: dotnet publish --configuration $(buildConfiguration) --output publish
+  displayName: 'dotnet publish'
+  workingDirectory: danielg-projectOne
+
+- task: AzureRmWebAppDeployment@4
+  displayName: azure app service deploy
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Azure subscription 1(f77db9df-7664-4dcc-ba6e-3fd840c8de99)'
+    appType: 'webApp'
+    WebAppName: 'dumb-mcdonalds-webapp'
+    packageForLinux: 'danielg-projectOne/publish'
