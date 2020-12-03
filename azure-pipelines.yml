@@ -20,6 +20,7 @@ pool:
 # variables common to multiple steps
 variables:
   buildConfiguration: 'Release'
+  sdkVersion: 3.1.x
 
 
 # these steps are run in sequence by the build agent
@@ -30,10 +31,10 @@ steps:
 
 #Added this task 12/3 
 - task: UseDotNet@2
-  displayName: dotnet package 
+  displayName: dotnet sdk 2.x 
   inputs:
     packageType: 'sdk'
-    version: 3.1.x
+    version: 2.x
 
  
 - task: SonarCloudPrepare@1
@@ -44,6 +45,12 @@ steps:
     scannerMode: 'MSBuild'
     projectKey: '2011-nov02-net_danielg-project1'
     projectName: 'Project One Web App'
+
+- task: UseDotNet@2
+  displayName: dotnet sdk $(sdkVersion) 
+  inputs:
+    packageType: 'sdk'
+    version: $(sdkVersion)
 
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
