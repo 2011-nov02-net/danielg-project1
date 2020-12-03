@@ -21,11 +21,27 @@ pool:
 variables:
   buildConfiguration: 'Release'
 
+
 # these steps are run in sequence by the build agent
 # in a directory that contains the most recent push on that branch of that repo
 # if any step fails, that will halt the build and subsequent steps will not run
+
 steps:
+
+#Added this task 12/3 
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: 5.x
+
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
   workingDirectory: danielg-projectOne
 
+# Added this task 12/3
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'test'
+    arguments: '--configuration $(buildConfiguration)'
+    publishTestResults: true
+    workingDirectory: 'danielg-projectOne'
