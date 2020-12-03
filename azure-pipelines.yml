@@ -13,6 +13,10 @@ trigger:
      - danielg-projectOne
      - azure-pipelines.yml
 
+ 
+
+# he indented in his to support the jobs and the stages...accd to trainer code file thats why it looks different
+#.  remember to indent if i change it like that. basically just making it more defined by adding job and stage
 # short for agent pool as in "build agent"
 # i.e. what set of machines will be the build agents to run these steps
 pool:
