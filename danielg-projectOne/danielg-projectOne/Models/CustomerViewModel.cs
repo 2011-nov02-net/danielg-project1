@@ -5,7 +5,7 @@ namespace danielg_projectOne.Models
 {
     public class CustomerViewModel
     {
-
+       
         [Display(Name = "ID")]
         public int ID { get; set; }
 

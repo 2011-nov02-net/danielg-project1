@@ -12,9 +12,6 @@ namespace danielg_projectOne.Models
         [RegularExpression(@"^[A-Za-z\s]+$", ErrorMessage = "Name must only contain letters or spaces")]
         public string FullName { get; set; }
 
-        [Display(Name = "Item")]
-        public Dictionary<string, int> StockedItems { get; set; }
-
         [Display(Name = "All Products")]
         public IList<ProductViewModel> ProductViewModels { get; set; }
 

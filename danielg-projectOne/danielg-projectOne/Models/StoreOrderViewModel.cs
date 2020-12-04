@@ -6,7 +6,7 @@ namespace danielg_projectOne.Models
     public class StoreOrderViewModel
     {
         //id, Customer, total, date
-        [Display(Name = "Store ID")]
+        [Display(Name = "Order ID")]
         [Required]
         public int ID { get; set; }
 

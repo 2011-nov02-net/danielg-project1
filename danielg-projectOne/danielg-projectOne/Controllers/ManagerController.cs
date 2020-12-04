@@ -60,7 +60,7 @@ namespace danielg_projectOne.Controllers
                 storeOrders = storesOrders.Select(c => new StoreOrderViewModel
                 {
                     ID = c.OrderID,
-                    Customer = c.Location.CityLocation,
+                    Customer = c.Customer.Name,
                     Cost = c.CalculateTotal(storeProducts),
                     Date = c.Date
                 });
