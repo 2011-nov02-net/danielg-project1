@@ -7,6 +7,14 @@
 @{
     ViewData["Title"] = "Manager";
 }
+<head>
+    <style>
+        .spaceDiv {
+            height: 10px;
+        }
+    </style>
+</head>
+
 
 <h1>Manager</h1>
 <div>
@@ -17,11 +25,11 @@
     <form asp-action="Index" method="GET" class="form-inline">
         <label class="sr-only" for="search">Search for a location here:</label>
         <input type="search" class="form-control mb-2 mr-sm-2 mb-sm-0" id="search" name="search" placeholder="Search" />
-        <div><button type="submit" class="btn btn-primary">Submit</button>
+        <div><button type="submit" class="btn btn-primary">Submit</button></div>
     </form>
 
 </div>
-
+<div class="spaceDiv"></div>
 
 <table class="table">
     <thead>
