@@ -93,3 +93,5 @@ steps:
     appType: 'webApp'
     WebAppName: 'dumb-mcdonalds-webapp'
     packageForLinux: 'danielg-projectOne/publish'
+    enableCustomDeployment: true
+    DeploymentType: 'zipDeploy'
