@@ -15,6 +15,6 @@ namespace danielg_projectOne.Models
         public IList<ProductViewModel> ProductViewModels { get; set; }
 
         [Display(Name = "Location")]
-        public Location StoreLocation { get; set; }
+        public string StoreLocation { get; set; }
     }
 }

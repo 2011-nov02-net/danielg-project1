@@ -94,8 +94,9 @@ namespace danielg_projectOne.Controllers
             // Create the ViewModel to send to the View. It should have the inventory at least
             PlaceOrderViewModel poVM = new PlaceOrderViewModel
             {
-                ProductViewModels = products
-                
+                ProductViewModels = products,
+                FullName = currentCustomer.Name,
+                StoreLocation = currentLocation.CityLocation
             };
             
             return View(poVM);
