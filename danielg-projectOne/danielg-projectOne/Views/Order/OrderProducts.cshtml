@@ -1,6 +1,6 @@
 ﻿@model PlaceOrderViewModel
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Order";
 }
 <h1>Place Order</h1>
 <div>
@@ -17,11 +17,12 @@
                 {
                     <label asp-for="@Model.ProductViewModels[i].ProductName" class="control-label">@Model.ProductViewModels[i].ProductName</label>
                     <input asp-for="@Model.ProductViewModels[i].Amount" class="form-control" />
+                    <span asp-validation-for="@Model.ProductViewModels[i].Amount"></span>
                     <input asp-for="@Model.ProductViewModels[i].ProductName" type="hidden"class="control-label" />
                 }
 
                 <span asp-validation-for="FullName" class="text-danger"></span>
-            </div>
+            </span>
             <div class="form-group">
                 <input type="submit" value="Order" class="btn btn-primary" />
             </div>
