@@ -108,38 +108,50 @@ namespace danielg_projectOne.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult OrderProducts([Bind("ProductViewModels")] PlaceOrderViewModel poVM)
         {
-            // Products and Amounts that just got ordered
-            var productVM = poVM.ProductViewModels;
-
-            // Get customer ID from TempData then use Repo to get the Web App customer
-            var currentCustomer = TempData["currentCustomer"];
-            var currentCustomerSignIn = Repo.GetCustomerFromID((int)currentCustomer);
-
-            // Add the products that just got ordered to the customers shopping cart 
-            foreach (var prod in productVM)
+            int currentCustomer = 0;
+            try
             {
-                currentCustomerSignIn.AddToCart(prod.ProductName, prod.Amount);
+                if (ModelState.IsValid)
+                {
+
+                    // Products and Amounts that just got ordered
+                    var productVM = poVM.ProductViewModels;
+
+                    // Get customer ID from TempData then use Repo to get the Web App customer
+                    currentCustomer = (int)TempData["currentCustomer"];
+                    var currentCustomerSignIn = Repo.GetCustomerFromID((int)currentCustomer);
+
+                    // Add the products that just got ordered to the customers shopping cart 
+                    foreach (var prod in productVM)
+                    {
+                        currentCustomerSignIn.AddToCart(prod.ProductName, prod.Amount);
+                    }
+                    // Get StoreID from TempData then use Repo to get the WebApp Store
+                    var currentStore = TempData["currentStore"];
+                    var currentStoreChosen = Repo.CreateStoreWithInventory((int)currentStore);
+
+                    // Make a new order instance with at the currentStore by the currentCustomer
+                    IOrder thisOrder = new Order(currentStoreChosen, currentCustomerSignIn);
+
+                    // Get all of the products available(for prices) 
+                    List<Product> products = Repo.GetProducts();
+                    // Use the prices of the products to calculate the cost of the order
+                    thisOrder.CalculateTotal(products);
+
+                    // Make a bool that checks if the store has enough inventory to fulfill the order
+                    bool inventorySufficient = currentStoreChosen.OrderPlaced(thisOrder);
+                    // If inventory is large enough, place the order
+                    if (inventorySufficient)
+                    {
+                        Repo.SendGenOrderToDB(thisOrder);
+                    }
+
+                }
             }
-            // Get StoreID from TempData then use Repo to get the WebApp Store
-            var currentStore = TempData["currentStore"];
-            var currentStoreChosen = Repo.CreateStoreWithInventory((int)currentStore);
-
-            // Make a new order instance with at the currentStore by the currentCustomer
-            IOrder thisOrder = new Order(currentStoreChosen, currentCustomerSignIn);
-
-            // Get all of the products available(for prices) 
-            List<Product> products = Repo.GetProducts();
-            // Use the prices of the products to calculate the cost of the order
-            thisOrder.CalculateTotal(products);
-
-            // Make a bool that checks if the store has enough inventory to fulfill the order
-            bool inventorySufficient = currentStoreChosen.OrderPlaced(thisOrder);
-            // If inventory is large enough, place the order
-            if (inventorySufficient)
+            catch (Exception ex)
             {
-                Repo.SendGenOrderToDB(thisOrder);
-            }
 
+            }
             return RedirectToAction("Home", "Customer", new { id = currentCustomer });
         }
     }

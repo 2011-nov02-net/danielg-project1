@@ -88,17 +88,28 @@ namespace danielg_projectOne.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create([Bind("FullName")] CustomerViewModel custVM)
         {
-            if (ModelState.IsValid)
-            {
-                // Get the name that the user passed into the view
-                string customerName = custVM.FullName;
-                // Create a Web App customer with the provided name
-                var newCustomer = new CustomerClass(customerName);
-                // Create a customer in the database with the Web App UI
-                Repo.CreateCustomerInDb(newCustomer);
 
-                return RedirectToAction(nameof(Index));
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    // Get the name that the user passed into the view
+                    string customerName = custVM.FullName;
+                    // Create a Web App customer with the provided name
+                    var newCustomer = new CustomerClass(customerName);
+                    // Create a customer in the database with the Web App UI
+                    Repo.CreateCustomerInDb(newCustomer);
+
+                    return RedirectToAction(nameof(Index));
+                }
             }
+            catch (Exception ex)
+            {
+
+            }
+
+
+            
 
 
             return View();
