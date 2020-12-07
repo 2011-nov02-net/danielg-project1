@@ -132,7 +132,7 @@ namespace danielg_projectOne.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult OrderProducts([Bind("ProductViewModels")] PlaceOrderViewModel poVM)
         {
-            int currentCustomer = 0;
+            int currentCustomer = (int)TempData["currentCustomer"];
             try
             {
                 if (ModelState.IsValid)
@@ -142,7 +142,6 @@ namespace danielg_projectOne.Controllers
                     var productVM = poVM.ProductViewModels;
 
                     // Get customer ID from TempData then use Repo to get the Web App customer
-                    currentCustomer = (int)TempData["currentCustomer"];
                     var currentCustomerSignIn = Repo.GetCustomerFromID((int)currentCustomer);
 
                     // Add the products that just got ordered to the customers shopping cart 

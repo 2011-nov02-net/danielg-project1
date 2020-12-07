@@ -143,8 +143,6 @@ namespace danielg_projectOne.DataModel.Repositories
         {
             // Create Context
             using var context = new danielGProj0DBContext(_contextOptions);
-            // Create the aggOrders list that need to get sent
-            List<AggOrder> aggOrders = new List<AggOrder>();
             // For each value in order.customer.shoppingCart, create a single aggOrder
             //   then add that aggOrder to the database
             foreach (var product in order.Customer.ShoppingCart)
@@ -325,8 +323,6 @@ namespace danielg_projectOne.DataModel.Repositories
         /// <returns></returns>
         public Dictionary<string, int> CreateStoreInventory(int storeID)
         {
-            // Create empty dictionary to fill in inventory
-            Dictionary<string, int> inventory = new Dictionary<string, int>();
             // Create Context
             using var context = new danielGProj0DBContext(_contextOptions);
             // Get agg inventory items from the database- this is a stores inventory
@@ -392,8 +388,6 @@ namespace danielg_projectOne.DataModel.Repositories
         /// <returns></returns>
         public Location CreateStoreWithInventory(int storeID)
         {
-            // Create empty dictionary to fill in inventory
-            Dictionary<string, int> inventory = new Dictionary<string, int>();
             // Create Context
             using var context = new danielGProj0DBContext(_contextOptions);
             // Get agg inventory items from the database- this is a stores inventory

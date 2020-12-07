@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-#nullable disable
-
+﻿
 namespace danielg_projectOne.DataModel
 {
     public partial class AggInventory

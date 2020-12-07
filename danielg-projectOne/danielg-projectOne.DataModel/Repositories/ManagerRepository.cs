@@ -76,8 +76,6 @@ namespace danielg_projectOne.DataModel.Repositories
         /// <returns></returns>
         public Location CreateStoreWithInventory(int storeID)
         {
-            // Create empty dictionary to fill in inventory
-            Dictionary<string, int> inventory = new Dictionary<string, int>();
             // Create Context
             using var context = new danielGProj0DBContext(_contextOptions);
             // Get agg inventory items from the database- this is a stores inventory
