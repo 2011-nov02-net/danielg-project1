@@ -13,6 +13,7 @@
         .spaceDiv {
             height: 10px;
         }
+
         tbody tr:hover {
             border-style: double;
             border-color: black;
@@ -20,11 +21,28 @@
         }
 
         tbody {
-            border-style: dotted groove groove groove;
+            border-style: groove;
         }
 
         thead {
-            border-style: groove groove dotted groove;
+            border-style: groove;
+            background-color: #DA291C;
+        }
+
+        .btn-primary {
+            background-color: #DA291C;
+        }
+
+        .btn-primary:hover {
+            background-color: #FFC72C;
+        }
+
+        a {
+            color: #DA291C;
+        }
+
+        a:hover {
+            color: #FF7700;
         }
     </style>
 </head>
@@ -55,6 +73,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+
             </th>
         </tr>
     </thead>
