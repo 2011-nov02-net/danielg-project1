@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Serilog;
+using Serilog.Events;
 
 namespace danielg_projectOne
 {
@@ -13,6 +15,9 @@ namespace danielg_projectOne
     {
         public static void Main(string[] args)
         {
+            Log.Logger = new LoggerConfiguration().MinimumLevel.Information().WriteTo.Console().CreateLogger();
+
+
             CreateHostBuilder(args).Build().Run();
         }
 
@@ -20,7 +25,7 @@ namespace danielg_projectOne
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseStartup<Startup>().UseSerilog();
                 });
     }
 }
