@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using danielg_projectOne.DataModel.Repositories;
 using danielg_projectOne.Library;
 using danielg_projectOne.Models;
@@ -106,7 +105,8 @@ namespace danielg_projectOne.Controllers
             }
             catch (Exception ex)
             {
-
+                // log and redirect
+                return RedirectToAction("Index", "Customer");
             }
             return View();
         }
