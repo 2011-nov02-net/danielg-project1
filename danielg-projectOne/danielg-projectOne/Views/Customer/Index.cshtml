@@ -18,6 +18,13 @@
            background-color: #FFFF00;
        }
 
+       tbody {
+           border-style: dotted groove groove groove;
+       }
+
+       thead {
+           border-style: groove groove dotted groove;
+       }
     </style>
 </head>
 
@@ -45,6 +52,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th>
+
             </th>
         </tr>
     </thead>
