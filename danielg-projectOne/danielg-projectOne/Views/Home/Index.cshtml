@@ -4,13 +4,71 @@
 
 <head>
     <style>
+        .pickButton {
+            height: 300px;
+            width: 300px;
+            border-color: #000000;
+            border-width: 2px;
+            border-style: ridge;
+            background-color: #FFFFFF;
+        }
 
+        .pickButton:hover {
+            background-color: #FFFF00;
+            transform: scale(1.1);
+        }
+
+        .inline-block {
+            display: inline-block;
+        }
+
+        #spaceDiv {
+            width: 60px;
+            height: 60px;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
     </style>
 </head>
 
-
-<div class="text-center">
+<body>
     <h1 class="display-4">Welcome to Dumb McDonald's!</h1>
-    <h3>Please Select One of the Above Options.</h3>
-    <p>Have a nice day</p>
-</div>
+    <div class="text-center">
+
+
+        <div id="spaceDiv"></div>
+    </div>
+
+    <div class="text-center">
+
+        <div class="inline-block">
+            <form>
+                <button type="submit" value="Customer" class="pickButton" formaction="/Customer">Customer Sign In</button>
+            </form>
+        </div>
+        <div class="inline-block" id="spaceDiv"></div>
+
+        <div class="inline-block">
+            <form>
+                <button type="submit" value="Manager" class="pickButton" formaction="/Manager">Manager Sign In</button>
+            </form>
+        </div>
+
+    </div>
+
+
+    <footer>
+        <p class="text-center">You look great today!</p>
+    </footer>
+
+
+
+
+
+
+</body>
