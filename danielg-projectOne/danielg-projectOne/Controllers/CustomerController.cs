@@ -70,7 +70,8 @@ namespace danielg_projectOne.Controllers
             }
             catch (Exception ex)
             {
-                // Do error handling
+                // log exception
+                return RedirectToAction("Index", "Customer");
             }
             
 
@@ -107,11 +108,6 @@ namespace danielg_projectOne.Controllers
             {
 
             }
-
-
-            
-
-
             return View();
         }
 

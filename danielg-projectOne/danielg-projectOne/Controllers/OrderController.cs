@@ -150,7 +150,8 @@ namespace danielg_projectOne.Controllers
             }
             catch (Exception ex)
             {
-
+                // log error
+                return RedirectToAction("Index", "Customer");
             }
             return RedirectToAction("Home", "Customer", new { id = currentCustomer });
         }
