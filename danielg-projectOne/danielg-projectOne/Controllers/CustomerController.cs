@@ -27,16 +27,23 @@ namespace danielg_projectOne.Controllers
         // GET: /Customer?search
         public IActionResult Index(string search = "")
         {
-            // Get the list of all customers matching the search string
-            List<CustomerClass> custs = Repo.GetAllCustomersByName(search);
-            // Populate a list of Customer view model with the list of web app customers
-            IEnumerable<CustomerViewModel> vmCusts = custs.Select(c => new CustomerViewModel
+            IEnumerable<CustomerViewModel> vmCusts = new List<CustomerViewModel>();
+
+            try
             {
-                ID = c.Id,
-                FullName = c.Name
-            });
-
-
+                // Get the list of all customers matching the search string
+                List<CustomerClass> custs = Repo.GetAllCustomersByName(search);
+                // Populate a list of Customer view model with the list of web app customers
+                vmCusts = custs.Select(c => new CustomerViewModel
+                {
+                    ID = c.Id,
+                    FullName = c.Name
+                });
+            }
+            catch
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View(vmCusts);
         }
 
@@ -67,19 +74,26 @@ namespace danielg_projectOne.Controllers
                 });
 
             }
-            catch (Exception ex)
+            catch
             {
-                // log exception
                 return RedirectToAction("Index", "Customer");
             }
             
-
             return View(custOrders);
         }
 
         // GET: Customer/Create
         public IActionResult Create()
         {
+            try
+            {
+                // Nothing to do here
+            }
+            catch
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             return View();
         }
 
@@ -103,9 +117,8 @@ namespace danielg_projectOne.Controllers
                     return RedirectToAction(nameof(Index));
                 }
             }
-            catch (Exception ex)
+            catch 
             {
-                // log and redirect
                 return RedirectToAction("Index", "Customer");
             }
             return View();

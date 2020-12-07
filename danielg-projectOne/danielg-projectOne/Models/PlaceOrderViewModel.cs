@@ -8,7 +8,6 @@ namespace danielg_projectOne.Models
     public class PlaceOrderViewModel
     {
         [Display(Name = "Name")]
-        [Required]
         public string FullName { get; set; }
 
         [Display(Name = "All Products")]

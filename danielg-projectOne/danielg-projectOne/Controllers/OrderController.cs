@@ -13,8 +13,6 @@ namespace danielg_projectOne.Controllers
 {
     public class OrderController : Controller
     {
-
-
         public ICustomerRepository Repo { get; }
 
         public OrderController(ICustomerRepository repo) =>
@@ -33,25 +31,34 @@ namespace danielg_projectOne.Controllers
         /// <returns></returns>
         public IActionResult Details(int id = 0)
         {
-            if (id == 0)
-            {
-                // if orderID was not sent, this should not happen
-            }
-            // Create the cart that was already ordered
-            Dictionary<string, int> cart = Repo.GetOrderDetails(id);
             // Create the list of pieces of the order to add to
             List<OrderDetailsViewModel> orderViewModels = new List<OrderDetailsViewModel>();
-            // Iterate through the cart 
-            foreach (var item in cart)
+
+            try
             {
-                // Create each piece of the order for the viewmodel to show to the user
-                OrderDetailsViewModel orderPiece = new OrderDetailsViewModel
+                if (id == 0)
                 {
-                    Product = item.Key,
-                    Amount = item.Value
-                };
-                // Add each piece of the order to the viewmodel to show to the user
-                orderViewModels.Add(orderPiece);
+                    // if orderID was not sent, this should not happen
+                }
+                // Create the cart that was already ordered
+                Dictionary<string, int> cart = Repo.GetOrderDetails(id);
+                
+                // Iterate through the cart 
+                foreach (var item in cart)
+                {
+                    // Create each piece of the order for the viewmodel to show to the user
+                    OrderDetailsViewModel orderPiece = new OrderDetailsViewModel
+                    {
+                        Product = item.Key,
+                        Amount = item.Value
+                    };
+                    // Add each piece of the order to the viewmodel to show to the user
+                    orderViewModels.Add(orderPiece);
+                }
+            }
+            catch 
+            {
+                return RedirectToAction("Home", "Customer", new { id = id});
             }
             return View(orderViewModels);
         }
@@ -59,45 +66,63 @@ namespace danielg_projectOne.Controllers
         
         public IActionResult MakeOrder(int id = 0)
         {
-            int customerID = id;
-            ViewBag.CustomerID = id;
-            List<Location> stores = Repo.GetStores();
-            IEnumerable<StoreViewModel> vmStores = stores.Select(s => new StoreViewModel
+            IEnumerable<StoreViewModel> vmStores = new List<StoreViewModel>();
+            try
             {
-                ID = s.Id,
-                Location = s.CityLocation
-            });
+                int customerID = id;
+                ViewBag.CustomerID = id;
+                List<Location> stores = Repo.GetStores();
+                vmStores = stores.Select(s => new StoreViewModel
+                {
+                    ID = s.Id,
+                    Location = s.CityLocation
+                });
+            }
+            catch
+            {
+                return RedirectToAction("Index", "Customer");
+            }
             return View(vmStores);
         }
 
 
         public IActionResult OrderProducts(int id = 0, int storeID = 0)
         {
-            // First, I am going to get the customer...
-            var currentCustomer = Repo.GetCustomerFromID(id);
-            TempData["currentCustomer"] = id;
-            // ...And the store
-            var currentLocation = Repo.CreateStoreWithInventory(storeID);
-            TempData["currentStore"] = storeID;
-            List<ProductViewModel> products = new List<ProductViewModel>();
+            PlaceOrderViewModel poVM = new PlaceOrderViewModel();
 
-            foreach (var item in currentLocation.Inventory)
+            try
             {
-                var prod = new ProductViewModel {
-                    ProductName = item.Key,
-                    Amount = 0
+                // First, I am going to get the customer...
+                var currentCustomer = Repo.GetCustomerFromID(id);
+                TempData["currentCustomer"] = id;
+                // ...And the store
+                var currentLocation = Repo.CreateStoreWithInventory(storeID);
+                TempData["currentStore"] = storeID;
+                List<ProductViewModel> products = new List<ProductViewModel>();
+
+                foreach (var item in currentLocation.Inventory)
+                {
+                    var prod = new ProductViewModel
+                    {
+                        ProductName = item.Key,
+                        Amount = 0
+                    };
+                    products.Add(prod);
+                }
+
+                // Create the ViewModel to send to the View. It should have the inventory at least
+                poVM = new PlaceOrderViewModel
+                {
+                    ProductViewModels = products,
+                    FullName = currentCustomer.Name,
+                    StoreLocation = currentLocation.CityLocation
                 };
-                products.Add(prod);
+            }
+            catch
+            {
+                return RedirectToAction("Home", "Customer", new { id = id });
             }
 
-            // Create the ViewModel to send to the View. It should have the inventory at least
-            PlaceOrderViewModel poVM = new PlaceOrderViewModel
-            {
-                ProductViewModels = products,
-                FullName = currentCustomer.Name,
-                StoreLocation = currentLocation.CityLocation
-            };
-            
             return View(poVM);
         }
 
@@ -147,9 +172,8 @@ namespace danielg_projectOne.Controllers
 
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                // log error
                 return RedirectToAction("Index", "Customer");
             }
             return RedirectToAction("Home", "Customer", new { id = currentCustomer });

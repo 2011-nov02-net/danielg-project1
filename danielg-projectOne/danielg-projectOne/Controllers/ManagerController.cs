@@ -29,15 +29,22 @@ namespace danielg_projectOne.Controllers
         // GET: /<controller>/
         public IActionResult Index(string search = "")
         {
-            // Get the list of all stores matching the sercch string
-            List<Location> stores = Repo.GetAllStoresByLocation(search);
-
-            IEnumerable<StoreViewModel> vmStores = stores.Select(s => new StoreViewModel
+            IEnumerable<StoreViewModel> vmStores = new List<StoreViewModel>();
+            try
             {
-                ID = s.Id,
-                Location = s.CityLocation
-            });
+                // Get the list of all stores matching the sercch string
+                List<Location> stores = Repo.GetAllStoresByLocation(search);
 
+                vmStores = stores.Select(s => new StoreViewModel
+                {
+                    ID = s.Id,
+                    Location = s.CityLocation
+                });
+            }
+            catch
+            {
+                return RedirectToAction(nameof(Index));
+            }
             return View(vmStores);
         }
 
@@ -66,9 +73,9 @@ namespace danielg_projectOne.Controllers
                 });
 
             }
-            catch (Exception ex)
+            catch 
             {
-                // Do error handling
+                return RedirectToAction(nameof(Index));
             }
 
 
