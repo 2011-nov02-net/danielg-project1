@@ -69,7 +69,7 @@ namespace danielg_projectOne.UnitTests
 
             var order = new Order(customer);
 
-            Product prod1 = new Product("Dumb Big Mac", 3);
+            Product prod1 = new Product("Dumb Big Mac", 2);
 
             var amt = order.CalaculateTotalOfOneProduct(prod1);
 
@@ -77,6 +77,12 @@ namespace danielg_projectOne.UnitTests
 
             Assert.False(equal, "Price should not be 3");
         }
+
+        //[Fact]
+        //public void TestTotalAmountOfProducts()
+        //{
+
+        //}
 
 
     }
