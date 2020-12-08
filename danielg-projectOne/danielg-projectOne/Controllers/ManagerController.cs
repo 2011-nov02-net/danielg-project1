@@ -48,7 +48,7 @@ namespace danielg_projectOne.Controllers
             return View(vmStores);
         }
 
-
+        //GET: Manager/Home/1
         public IActionResult Home(int id = 0)
         {
             if (id == 0)

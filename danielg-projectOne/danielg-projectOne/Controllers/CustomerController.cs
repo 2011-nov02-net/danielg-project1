@@ -50,10 +50,6 @@ namespace danielg_projectOne.Controllers
         // GET :/Customer/Home/id
         public IActionResult Home(int id = 0)
         {
-            if (id == 0)
-            {
-                // No customer was able to sign in, this shouldnt happen
-            }
             // Create list of viewmodel to pass to view method in return
             IEnumerable<CustomerOrderViewModel> custOrders = null;
             // Add the CustomerID to the viewBag so that I can pass it into the next query string
