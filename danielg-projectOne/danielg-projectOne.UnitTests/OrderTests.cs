@@ -78,11 +78,43 @@ namespace danielg_projectOne.UnitTests
             Assert.False(equal, "Price should not be 3");
         }
 
-        //[Fact]
-        //public void TestTotalAmountOfProducts()
-        //{
+        [Theory]
+        [InlineData(-1)]
+        [InlineData(0)]
+        [InlineData(-153)]
+        public void TestTotalAmountOfProductsTrue(int value)
+        {
+            var cart = new Dictionary<string, int>()
+            {
+                { "Dumb Big Mac", value}
+            };
+            var customer = new CustomerClass(cart);
 
-        //}
+            var order = new Order(customer);
+
+            bool equal = order.OrderHasProduct();
+
+            Assert.False(equal, "Order Has No Products");
+        }
+
+        [Theory]
+        [InlineData(1)]
+        [InlineData(9)]
+        [InlineData(12)]
+        public void TestTotalAmountOfProductsFalse(int value)
+        {
+            var cart = new Dictionary<string, int>()
+            {
+                { "Dumb Big Mac", value}
+            };
+            var customer = new CustomerClass(cart);
+
+            var order = new Order(customer);
+
+            bool equal = order.OrderHasProduct();
+
+            Assert.True(equal, "Order Has at Least One Product");
+        }
 
 
     }

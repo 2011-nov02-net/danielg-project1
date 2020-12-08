@@ -155,7 +155,7 @@ namespace danielg_projectOne.Library.Order
             {
                 count += product.Value;
             }
-            if (count == 0)
+            if (count <= 0)
             {
                 return false;
             }
