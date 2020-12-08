@@ -143,5 +143,23 @@ namespace danielg_projectOne.Library.Order
 
             }
         }
+
+        /// <summary>
+        /// Check if the order is empty 
+        /// </summary>
+        public bool OrderHasProduct()
+        {
+            int count = 0;
+
+            foreach (var product in Customer.ShoppingCart)
+            {
+                count += product.Value;
+            }
+            if (count == 0)
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

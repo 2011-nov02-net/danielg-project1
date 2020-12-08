@@ -24,11 +24,7 @@ namespace danielg_projectOne.Controllers
             return View();
         }
 
-        /// <summary>
-        /// Get the details of an order(Products and amounts) based on the orderID
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        //GET: Order/Details/1
         public IActionResult Details(int id = 0)
         {
             // Create the list of pieces of the order to add to
@@ -63,7 +59,7 @@ namespace danielg_projectOne.Controllers
             return View(orderViewModels);
         }
 
-        
+        // GET: Order/MakeOrder/1
         public IActionResult MakeOrder(int id = 0)
         {
             IEnumerable<StoreViewModel> vmStores = new List<StoreViewModel>();
@@ -86,6 +82,7 @@ namespace danielg_projectOne.Controllers
         }
 
 
+        // GET: Order/OrderProducts/1?storeID=1
         public IActionResult OrderProducts(int id = 0, int storeID = 0)
         {
             PlaceOrderViewModel poVM = new PlaceOrderViewModel();
@@ -130,6 +127,7 @@ namespace danielg_projectOne.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        // POST: Order/OrderProducts/1?storeID=1
         public IActionResult OrderProducts([Bind("ProductViewModels")] PlaceOrderViewModel poVM)
         {
             int currentCustomer = (int)TempData["currentCustomer"];
@@ -163,12 +161,16 @@ namespace danielg_projectOne.Controllers
 
                     // Make a bool that checks if the store has enough inventory to fulfill the order
                     bool inventorySufficient = currentStoreChosen.OrderPlaced(thisOrder);
-                    // If inventory is large enough, place the order
-                    if (inventorySufficient)
-                    {
-                        Repo.SendGenOrderToDB(thisOrder);
-                    }
+                    bool orderHasProducts = thisOrder.OrderHasProduct();
 
+                    if (orderHasProducts)
+                    {
+                        // If inventory is large enough, place the order
+                        if (inventorySufficient)
+                        {
+                            Repo.SendGenOrderToDB(thisOrder);
+                        }
+                    }
                 }
             }
             catch

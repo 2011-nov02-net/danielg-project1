@@ -52,5 +52,11 @@ namespace danielg_projectOne.Library.Order
         /// <param name=""></param>
         /// <returns></returns>
         public int CalaculateTotalOfOneProduct(Product prod);
+
+        /// <summary>
+        /// Check if an order has any products
+        /// </summary>
+        /// <returns></returns>
+        public bool OrderHasProduct();
     }
 }

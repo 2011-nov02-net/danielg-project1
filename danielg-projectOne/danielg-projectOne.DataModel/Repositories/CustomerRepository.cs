@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using danielg_projectOne.Library;
@@ -247,7 +246,11 @@ namespace danielg_projectOne.DataModel.Repositories
             return customerHere;
         }
 
-
+        /// <summary>
+        /// Get all of the products and amounts that were in a specific order
+        /// </summary>
+        /// <param name="orderID"></param>
+        /// <returns></returns>
         public Dictionary<string, int> GetOrderDetails(int orderID)
         {
             // Create the context
