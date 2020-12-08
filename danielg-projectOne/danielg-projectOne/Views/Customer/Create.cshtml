@@ -2,13 +2,49 @@
 @{
     ViewData["Title"] = "Create";
 }
+
+<head>
+    <style>
+
+        a {
+            color: #DA291C;
+        }
+
+        a:hover {
+            color: #FF7700;
+        }
+
+        .btn-primary {
+            background-color: #DA291C;
+        }
+
+        .btn-primary:hover {
+            background-color: #FFC72C;
+        }
+
+        .rightDiv {
+            float: right;
+        }
+
+        #spaceDiv {
+            width: 25px;
+        }
+
+        #centerDiv {
+            text-align: center;
+            margin: auto;
+        }
+    </style>
+</head>
+
+
 <h1>Customers</h1>
 <div>
     <h4>Create a new Account</h4>
 </div>
 
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-4" id="centerDiv">
         <form asp-action="Create" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -23,8 +59,8 @@
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+<div class="rightDiv">
+    <a asp-action="Index">Cancel</a>
 </div>
 
 @section Scripts {

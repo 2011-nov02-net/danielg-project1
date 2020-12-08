@@ -11,7 +11,7 @@
 <head>
     <style>
         .centerDiv {
-            width: 150px;
+            width: 190px;
             margin: auto;
             height: 30px;
             border: 2px solid #000000;
@@ -53,19 +53,23 @@
            color: #FF7700;
         }
 
-
-
+        .rightDiv {
+            float: right;
+        }
+        #orderDiv {
+            background-color: #FFC72C;
+        }
     </style>
 </head>
 
 <body>
     <h1>Customer Orders</h1>
     <div>
-        <h4>View Orders or Choose to make a new order</h4>
+        <h4>View Orders or Choose to Nake a New Order</h4>
     </div>
 
 
-    <div class="centerDiv">
+    <div class="centerDiv" id="orderDiv">
         @Html.ActionLink("Place a New Order", "MakeOrder", "Order", new { id = ViewBag.CustomerID })
     </div>
     <div class="spaceDiv">
@@ -118,7 +122,7 @@
             }
         </tbody>
     </table>
-    <div>
+    <div class="rightDiv">
         <a asp-action="Index">Sign Out</a>
     </div>
 </body>

@@ -5,6 +5,34 @@
 <head>
     <style>
 
+        a {
+            color: #DA291C;
+        }
+
+        a:hover {
+            color: #FF7700;
+        }
+
+        .btn-primary {
+            background-color: #DA291C;
+        }
+
+        .btn-primary:hover {
+           background-color: #FFC72C;
+        }
+
+        .rightDiv {
+            float: right;
+        }
+
+        .spaceDiv {
+            height: 10px;
+        }
+
+        #centerDiv {
+            text-align: center;
+            margin:auto;
+        }
     </style>
 </head>
 
@@ -15,7 +43,7 @@
 
 
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-4" id="centerDiv">
         <form asp-action="OrderProducts" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -25,6 +53,7 @@
                     <input asp-for="@Model.ProductViewModels[i].Amount" class="form-control" />
                     <span asp-validation-for="@Model.ProductViewModels[i].Amount" class="text-danger"></span>
                     <input asp-for="@Model.ProductViewModels[i].ProductName" type="hidden"class="control-label" />
+                    <div class="spaceDiv"> </div>
                 }
 
                 <span asp-validation-for="FullName" class="text-danger"></span>
@@ -36,8 +65,8 @@
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+<div class="rightDiv">
+    @Html.ActionLink("Cancel", "Index", "Customer")
 </div>
 
 @section Scripts {
