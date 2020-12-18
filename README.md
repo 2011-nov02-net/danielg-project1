@@ -51,4 +51,4 @@ Based off of "Dumb Starbucks," a popular company famous for it's similar name an
 - Here is what it looks like when the Manager picks a location to view. Notice the table is similar to the customer table, but the location is replaced with the customer, because the manager picked the location but would also like to know who placed an order.
 ![](/Screenshots/ManagerViewLocation.png)
 ## License
-danielg-project1 uses the MIT License
+Dumb McDonald's uses the MIT License
