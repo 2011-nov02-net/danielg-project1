@@ -27,7 +27,7 @@ Based off "Dumb Starbucks," a popular company famous for it's similar name and b
 - Logging 
 - Input Validation
 - Continuous Deployment
-To - Do
+## To - Do
  - Testing Database Methods
  - Split CSS up into .css files to promote reusability
  - Make a couple of routing paths more logical
