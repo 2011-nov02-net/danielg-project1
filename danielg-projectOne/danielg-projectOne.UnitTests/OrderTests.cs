@@ -80,6 +80,7 @@ namespace danielg_projectOne.UnitTests
 
         [Theory]
         [InlineData(-1)]
+        [InlineData(-2)]
         [InlineData(0)]
         [InlineData(-153)]
         public void TestTotalAmountOfProductsTrue(int value)

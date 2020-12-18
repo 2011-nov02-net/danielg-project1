@@ -43,7 +43,7 @@ namespace danielg_projectOne.Controllers
             }
             catch
             {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Home");
             }
             return View(vmStores);
         }
