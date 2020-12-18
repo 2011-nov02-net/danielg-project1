@@ -1,7 +1,7 @@
 # Dumb Mcdonald's
 [Project Requirements](https://github.com/2011-nov02-net/trainer-code/wiki/Project-1-requirements)
 ## Project Description
-Based off "Dumb Starbucks," a popular company famous for it's similar name and branding to Starbucks, Dumb McDonald's is an ASP.NET MVC Web Application that mimics an online ordering experience from McDonald's. 
+Based off of "Dumb Starbucks," a popular company famous for it's similar name and branding to Starbucks, Dumb McDonald's is an ASP.NET MVC Web Application that mimics an online ordering experience from McDonald's. 
 
 ## Technologies Used
 - ASP.NET Core MVC
@@ -39,6 +39,16 @@ Based off "Dumb Starbucks," a popular company famous for it's similar name and b
 4) Run in VS or VSCode
 
 ## Usage
-
+[Click this link to use Dumb McDonald's yourself!](https://dumb-mcdonalds-webapp.azurewebsites.net/)
+- Here you can see the home page, two main paths you can take as previously mentioned.
+![](/Screenshots/HomeScreen.png)
+- Here you can see the table of users, where you can search for your account or pick one without searching.
+![](/Screenshots/CustomersSignInTable.png)
+- This is what a customer sees when he or she logs in. Past orders and a way to create a new order. Take note of the CSS that I wrote specifically for the tables in this application.
+![](/Screenshots/CustomersHome.png)
+- Here is what it looks like to create an order. The stores stock is iterated over and the customer is given the option to choose amounts of products they want. Also pictured is one example of validation. The user tried to create an order with a negative amounts of products.
+![](/Screenshots/PlaceOrder.png)
+- Here is what it looks like when the Manager picks a location to view. Notice the table is similar to the customer table, but the location is replaced with the customer, because the manager picked the location but would also like to know who placed an order.
+![](/Screenshots/ManagerViewLocation.png)
 ## License
 danielg-project1 uses the MIT License
