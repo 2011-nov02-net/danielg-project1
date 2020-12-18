@@ -53,7 +53,7 @@ namespace danielg_projectOne.DataModel.Repositories
             var dbCustomers = context.Customers.Where(sn => sn.Name.Contains(name));
             // Make DB list into Web App Customers list
             var appCustomers = dbCustomers.Select(c => new CustomerClass(c.Name, c.Id)).ToList();
-            // return customer list
+            // return list of customers
             return appCustomers;
         }
 
