@@ -12,12 +12,6 @@ Based off "Dumb Starbucks," a popular company famous for it's similar name and b
 - Serilog.AspNetCore 3.4.0
 
 # Features
-
-
-# Getting Started
-
-
-# Usage
 - 2 Main paths in Dumb McDonald's
   - Manager Path
     - Includes the ability to view separate store locations 
@@ -28,6 +22,23 @@ Based off "Dumb Starbucks," a popular company famous for it's similar name and b
     - To sign in 
     - To place orders to locations choosing various amounts of various products
     - To view those orders placed as well as specifc details of those orders
+
+- Persistent Data
+- Logging 
+- Input Validation
+- Continuous Deployment
+To - Do
+ - Testing Database Methods
+ - Split CSS up into .css files to promote reusability
+ - Make a couple of routing paths more logical
+
+# Getting Started
+1) Run command: git clone https://github.com/2011-nov02-net/danielg-project1
+2) Use database ".sql" file in repo to set up database with some initial data
+3) Make sure you use your connection string to access your database 
+4) Run in VS or VSCode
+
+# Usage
 
 # License
 danielg-project1 uses the MIT License
