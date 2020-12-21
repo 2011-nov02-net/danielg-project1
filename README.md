@@ -1,7 +1,7 @@
 # Dumb Mcdonald's
 [Project Requirements](https://github.com/2011-nov02-net/trainer-code/wiki/Project-1-requirements)
 ## Project Description
-Based off of "Dumb Starbucks," a popular company famous for it's similar name and branding to Starbucks, Dumb McDonald's is an ASP.NET MVC Web Application that mimics an online ordering experience from McDonald's. 
+Dumb McDonald's is an ASP.NET MVC Web Application that mimics an online ordering experience from McDonald's. Based off of "Dumb Starbucks," a popular company famous for it's similar name and branding to Starbucks.
 
 ## Technologies Used
 - ASP.NET Core 5.0
