@@ -14,11 +14,11 @@ Based off of "Dumb Starbucks," a popular company famous for it's similar name an
 
 ## Features
   - Managers can:
-    - Includes the ability to view separate store locations 
+    - View separate store locations 
     - View orders placed at those locations
     - View specific details of those orders
   - Customers can:
-    - Includes the ability create accounts, 
+    - Create accounts 
     - To sign in 
     - To place orders to locations choosing various amounts of various products
     - To view those orders placed as well as specifc details of those orders
