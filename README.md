@@ -4,20 +4,20 @@
 Based off of "Dumb Starbucks," a popular company famous for it's similar name and branding to Starbucks, Dumb McDonald's is an ASP.NET MVC Web Application that mimics an online ordering experience from McDonald's. 
 
 ## Technologies Used
-- ASP.NET Core MVC
+- ASP.NET Core 5.0
 - Azure App Service
 - Azure Pipelines
-- SQL Server 5.0.0
+- SQL Server
 - Microsoft Entity Framework 5.0.0 
 - Serilog.AspNetCore 3.4.0
+- SonarCloud
 
 ## Features
-- 2 Main paths in Dumb McDonald's
-  - Manager Path
+  - Managers can:
     - Includes the ability to view separate store locations 
     - View orders placed at those locations
     - View specific details of those orders
-  - Customer Path
+  - Customers can:
     - Includes the ability create accounts, 
     - To sign in 
     - To place orders to locations choosing various amounts of various products
