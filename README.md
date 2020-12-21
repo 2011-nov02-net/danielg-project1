@@ -51,4 +51,4 @@ Dumb McDonald's is an ASP.NET MVC Web Application that mimics an online ordering
 - Here is what it looks like when the Manager picks a location to view. Notice the table is similar to the customer table, but the location is replaced with the customer, because the manager picked the location but would also like to know who placed an order.
 ![](/Screenshots/ManagerViewLocation.png)
 ## License
-Dumb McDonald's uses the MIT License
+Dumb McDonald's uses the [MIT License](https://github.com/git/git-scm.com/blob/master/MIT-LICENSE.txt)
