@@ -46,7 +46,7 @@ Dumb McDonald's is an ASP.NET MVC Web Application that mimics an online ordering
 ![](/Screenshots/CustomersSignInTable.png)
 - This is what a customer sees when he or she logs in. Past orders and a way to create a new order. Take note of the CSS that I wrote specifically for the tables in this application.
 ![](/Screenshots/CustomersHome.png)
-- Here is what it looks like to create an order. The stores stock is iterated over and the customer is given the option to choose amounts of products they want. Also pictured is one example of validation. The user tried to create an order with a negative amounts of products.
+- Here is what it looks like to create an order. The stores stock is iterated over and the customer is given the option to choose amounts of products they want. Also pictured is one example of validation. The user tried to create an order with a negative amount of products.
 ![](/Screenshots/PlaceOrder.png)
 - Here is what it looks like when the Manager picks a location to view. Notice the table is similar to the customer table, but the location is replaced with the customer, because the manager picked the location but would also like to know who placed an order.
 ![](/Screenshots/ManagerViewLocation.png)
